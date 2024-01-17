@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Notes_Attachments.Models.NotesViewModel>
+
+@{
+    ViewData["Title"] = "QuoteNote";
+}
+
+<h1>QuoteNote</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.recordId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fileNmae)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.documentBody)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.subject)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.recordId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fileNmae)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.documentBody)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.subject)
+            </td>
+            <td>
+                    @Html.ActionLink("DownloadAttachments", "DownloadAttachments", new { id = item.recordId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Notes_Attachments.Models.NotesViewModel>
+
+@{
+    ViewData["Title"] = "Note";
+}
+
+<h1>Note</h1>
+
+
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.recordId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fileNmae)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.documentBody)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.type)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.recordId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fileNmae)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.documentBody)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.type)
+                    </td>
+                    <td>
+                        @Html.ActionLink("DownloadNote", "DownloadNote", new { id = item.recordId })
+@*                        <a href="#" onclick="downloadTextFile('@item.documentBody', 'note_@item.recordId.txt')">DownloadNote</a>
+*@                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No notes available.</p>
+}
+
+@*<script>
+    // Function to trigger file download
+    function downloadTextFile(content, filename) {
+        const blob = new Blob([content], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+</script>*@
